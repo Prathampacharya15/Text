@@ -63,22 +63,54 @@ export default function App() {
         />
 
         <select
-          value={animation}
-          onChange={(e) => setAnimation(e.target.value)}
-          style={{ fontSize: 16, padding: 5 }}
-        >
-          <option value="FlyIn">Fly In</option>
-          <option value="Bounce">Bounce</option>
-          <option value="Rotate">Rotate</option>
-          <option value="Fade">Fade</option>
-          <option value="Scale">Scale</option>
-          <option value="WaveFromLeft">Wave</option>
-          <option value="Scramble">Scramble</option>
-          <option value="LetterFlip">Letter Flip</option>
-          <option value="Collision">Collision</option>
-          <option value="MaskedLines">Masked Lines</option>
-          <option value="SplitTextEffect">Revert</option>
-        </select>
+  value={animation}
+  onChange={(e) => setAnimation(e.target.value)}
+  style={{ fontSize: 16, padding: 5 }}
+>
+  <option value="FlyIn">Fly In</option>
+  <option value="Bounce">Bounce</option>
+  <option value="Rotate">Rotate</option>
+  <option value="Fade">Fade</option>
+  <option value="Scale">Scale</option>
+  <option value="WaveFromLeft">Wave</option>
+  <option value="Scramble">Scramble</option>
+  <option value="LetterFlip">Letter Flip</option>
+  <option value="Collision">Collision</option>
+  <option value="MaskedLines">Masked Lines</option>
+  <option value="SplitTextEffect">Revert</option>
+  <option value="Pan">Pan</option>
+
+  {/* NEW ANIMATIONS ADDED BELOW */}
+  <option value="Slide">Slide</option>
+  <option value="Drift">Drift</option>
+  <option value="Pop">Pop</option>
+  <option value="Tumble">Tumble</option>
+  <option value="Stomp">Stomp</option>
+  <option value="Roll">Roll</option>
+
+  {/* Typing & reveal */}
+  <option value="Typewriter">Typewriter</option>
+  <option value="CharReveal">Character Reveal</option>
+  <option value="WordReveal">Word Reveal</option>
+
+  {/* Emphasis animations */}
+  <option value="Pulse">Pulse</option>
+  <option value="Breathe">Breathe</option>
+  <option value="Jitter">Jitter</option>
+  <option value="Shake">Shake</option>
+  <option value="Flicker">Flicker</option>
+  <option value="Echo">Echo</option>
+
+  {/* Exit animations */}
+  <option value="FadeOut">Fade Out</option>
+  <option value="SlideOut">Slide Out</option>
+  <option value="Shrink">Shrink</option>
+  <option value="MaskWipeOut">Mask Wipe Out</option>
+
+  {/* Visual glow */}
+  <option value="NeonGlow">Neon Glow</option>
+</select>
+
 
         {/* Font selector */}
         <select
