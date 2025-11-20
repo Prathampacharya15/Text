@@ -106,6 +106,21 @@ export default function App() {
   <option value="SlideOut">Slide Out</option>
   <option value="Shrink">Shrink</option>
   <option value="MaskWipeOut">Mask Wipe Out</option>
+  <option value="Merge">Merge</option>
+<option value="Block">Block</option>
+<option value="Burst">Burst</option>
+<option value="Skate">Skate</option>
+<option value="Spread">Spread</option>
+<option value="Clarify">Clarify</option>
+<option value="Rise">Rise</option>
+
+<option value="Blur">Blur</option>
+<option value="Succession">Succession</option>
+<option value="Baseline">Baseline</option>
+<option value="Tectonic">Tectonic</option>
+<option value="Scrapbook">Scrapbook</option>
+<option value="Wiggle">Wiggle</option>
+
 
   {/* Visual glow */}
   <option value="NeonGlow">Neon Glow</option>

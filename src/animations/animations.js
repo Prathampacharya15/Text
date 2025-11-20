@@ -616,6 +616,303 @@ export function animateLetters(letters, animation, redraw) {
       break;
     }
 
+    case "Merge": {
+  const tl = gsap.timeline();
+  const centerX = letters.reduce((a, b) => a + b._baseX, 0) / letters.length;
+
+  letters.forEach((l) => {
+    l.x = centerX;
+    l.opacity = 0;
+  });
+
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      x: letter._baseX,
+      opacity: 1,
+      duration: 0.5,
+      ease: "power3.out",
+      onUpdate: redraw
+    }, i * 0.03);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+case "Block": {
+  letters.forEach((l) => { l.x = l._baseX - 200; l.opacity = 0; });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      x: letter._baseX,
+      opacity: 1,
+      duration: 0.35,
+      ease: "steps(3)",
+      onUpdate: redraw
+    }, i * 0.03);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+case "Burst": {
+  letters.forEach((l) => {
+    l.x = l._baseX + (Math.random() - 0.5) * 200;
+    l.y = l._baseY + (Math.random() - 0.5) * 150;
+    l.opacity = 0;
+  });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      x: letter._baseX,
+      y: letter._baseY,
+      opacity: 1,
+      duration: 0.8,
+      ease: "back.out(2)",
+      onUpdate: redraw
+    }, i * 0.02);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+case "Skate": {
+  letters.forEach((l) => { l.x = l._baseX - 300; l.opacity = 0; });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      x: letter._baseX + 20,
+      opacity: 1,
+      duration: 0.4,
+      ease: "power4.out",
+      onUpdate: redraw
+    }, i * 0.03);
+
+    tl.to(letter, {
+      x: letter._baseX,
+      duration: 0.2,
+      ease: "sine.out",
+      onUpdate: redraw
+    }, ">")
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+case "Spread": {
+  const centerX = letters.reduce((a, b) => a + b._baseX, 0) / letters.length;
+
+  letters.forEach((l) => {
+    l.x = centerX;
+    l.opacity = 0;
+  });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      x: letter._baseX,
+      opacity: 1,
+      duration: 0.55,
+      ease: "power3.out",
+      onUpdate: redraw
+    }, i * 0.03);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+case "Clarify": {
+  letters.forEach((l) => {
+    l.blur = 20;
+    l.opacity = 0;
+  });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      opacity: 1,
+      blur: 0,
+      duration: 0.5,
+      ease: "power2.out",
+      onUpdate: redraw,
+    }, i * 0.02);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+case "Rise": {
+  letters.forEach((l) => {
+    l.y = l._baseY + 100;
+    l.opacity = 0;
+  });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      y: letter._baseY,
+      opacity: 1,
+      duration: 0.5,
+      ease: "power3.out",
+      onUpdate: redraw
+    }, i * 0.03);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+
+
+
+case "Blur": {
+  letters.forEach((l) => { l.blur = 15; l.opacity = 0; });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      blur: 0,
+      opacity: 1,
+      duration: 0.45,
+      ease: "power2.out",
+      onUpdate: redraw
+    }, i * 0.02);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+case "Succession": {
+  const tl = gsap.timeline();
+  letters.forEach((letter) => { letter.opacity = 0; });
+
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      opacity: 1,
+      duration: 0.1,
+      onUpdate: redraw
+    }, i * 0.08);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+case "Baseline": {
+  const tl = gsap.timeline();
+  letters.forEach((letter) => {
+    letter.y = letter._baseY + 30;
+    letter.opacity = 0;
+  });
+
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      y: letter._baseY,
+      opacity: 1,
+      duration: 0.6,
+      ease: "bounce.out",
+      onUpdate: redraw,
+    }, i * 0.03);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+case "Tectonic": {
+  const tl = gsap.timeline();
+
+  letters.forEach((letter) => {
+    letter.y = letter._baseY;
+    letter.x = letter._baseX;
+  });
+
+  tl.to(letters, {
+    x: (i) => letters[i]._baseX + (Math.random() - 0.5) * 8,
+    y: (i) => letters[i]._baseY + (Math.random() - 0.5) * 8,
+    duration: 0.08,
+    repeat: 8,
+    yoyo: true,
+    ease: "none",
+    onUpdate: redraw,
+    onComplete: () => letters.forEach(l => setRestore(l))
+  });
+
+  anims.push(tl);
+  break;
+}
+
+case "Scrapbook": {
+  letters.forEach(l => {
+    l.scale = 0.5;
+    l.opacity = 0;
+    l.rot = (Math.random() - 0.5) * 0.3;
+    l.shadow = {
+      color: "rgba(0,0,0,0.25)",
+      blur: 6,
+      x: 4,
+      y: 4
+    };
+  });
+
+  const tl = gsap.timeline();
+  letters.forEach((letter, i) => {
+    tl.to(letter, {
+      scale: 1,
+      opacity: 1,
+      rot: 0,
+      duration: 0.5,
+      ease: "back.out(2)",
+      onUpdate: redraw
+    }, i * 0.04);
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+
+case "Wiggle": {
+  const tl = gsap.timeline();
+  tl.to({}, {
+    duration: 0.05,
+    repeat: 12,
+    onRepeat: () => {
+      letters.forEach((letter) => {
+        letter.x = letter._baseX + (Math.random() - 0.5) * 12;
+        letter.y = letter._baseY + (Math.random() - 0.5) * 12;
+      });
+      redraw();
+    },
+    onComplete: () => letters.forEach((l) => setRestore(l))
+  });
+
+  anims.push(tl);
+  break;
+}
+
+
+
+
+
     // ---------- Fallback / default: small pop ----------
     default: {
       // small default entrance so user sees something
